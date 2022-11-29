@@ -9,5 +9,5 @@ public interface IUserService {
     List<User> getAll();
     User save(User user);
 
-    User getByUsernameAndPassword(String username, String password) throws UserNotFoundException;
+    User getByUsernameAndPassword(User user) throws UserNotFoundException;
 }

@@ -4,9 +4,10 @@ import com.niit.AuthenticationService.domain.User;
 import com.niit.AuthenticationService.exception.UserNotFoundException;
 import com.niit.AuthenticationService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserService implements IUserService {
     private UserRepository userRepository;
 
@@ -26,8 +27,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getByUsernameAndPassword(String username, String password) throws UserNotFoundException {
-       User userObj = userRepository.findByUsernameAndPassword(username, password);
+    public User getByUsernameAndPassword(User user) throws UserNotFoundException {
+       User userObj = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if(userObj == null){
             throw new UserNotFoundException();
         }
