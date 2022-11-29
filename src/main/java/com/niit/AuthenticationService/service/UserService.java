@@ -1,6 +1,7 @@
 package com.niit.AuthenticationService.service;
 
 import com.niit.AuthenticationService.domain.User;
+import com.niit.AuthenticationService.exception.UserNotFoundException;
 import com.niit.AuthenticationService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,7 +26,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findByUsernameAndPassword(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password);
+    public User getByUsernameAndPassword(String username, String password) throws UserNotFoundException {
+       User userObj = userRepository.findByUsernameAndPassword(username, password);
+        if(userObj == null){
+            throw new UserNotFoundException();
+        }
+         return userObj;
     }
 }
