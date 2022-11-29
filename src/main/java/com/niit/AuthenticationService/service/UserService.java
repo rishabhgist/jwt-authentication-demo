@@ -16,16 +16,16 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> getAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public User save(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
     public User findByUsernameAndPassword(String username, String password) {
-        return null;
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 }
